@@ -49,11 +49,13 @@ boundaryField
     }*/
     propellerCW
     {
-        type            noSlip;
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
     }
 	propellerCCW
     {
-        type            noSlip;
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
     }
 	domain
     {

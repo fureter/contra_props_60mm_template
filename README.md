@@ -4,7 +4,7 @@
 This case uses overset meshing and pimpleFoam to simulate two contra rotating 60mm propellers similar to the ones seen on small brushed quad copters.
 Each propeller is spinning at 3100 rad/s and are in line with eachother relative to the flow velocity.
 
-#[Geometry]:
+**[Geometry]:**
 The geometry for the propellers are in each subfolder PropellerMesh_CCW and CW, and the origninal STL's are located in the baseGeometry folder.
 Within each mesh subfolder is a rotateAircraft and translate file, these are used for preprocessing the STL files. Currently the STL's located
 in the constant folder of each mesh subfolder has already been transformed with these two files. 
@@ -12,7 +12,7 @@ in the constant folder of each mesh subfolder has already been transformed with 
 If the STL's in the constant folder get modified
 replace them with the base STL's in the baseGeometry folder and run ./rotateAircraft then ./translate
 
-#[Running]:
+**[Running]:**
 To run the case you can execute ./Allclean then ./Allrun
 
 ./Allrun will fail at setFields if zoneID is not copied from 0.base by ./Allrun. ./Allrun will copy zoneID from 0.base into 0, but this can fail if 
@@ -25,7 +25,8 @@ If the mpirun command fails, check the logs for setFields and decomposePar and v
 remedying the issue, and mpirun should execute properlly afterwards.
 
 
-#[Notes]: The mesh for this case is not optimal for resolving smaller LES features in the wall layer or in the near field around the propeller geometry, if the users
+**[Notes]:** 
+The mesh for this case is not optimal for resolving smaller LES features in the wall layer or in the near field around the propeller geometry, if the users
 hardware allows it, the mesh should be refined in the region around the propellers and just downstream of the propeller in a 70mm diameter cylinder. 
 
 Ideally the region arodun the propellers should be split another 2 times to reach a cell size of 0.52mm or half the thickness of the propeller blade, or smaller.

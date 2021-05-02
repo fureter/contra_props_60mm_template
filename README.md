@@ -21,8 +21,8 @@ it is blocked by permissions/read/write access
 ./Allrun will also fail at decomposePar if cellLevel and pointLevel are not deleted from the 0 folder after the merging of the meshes. ./Allrun will attempt
 to delete the files from the 0 folder, but could also be blocked by permissions.
 
-If the mpirun command fails, check the logs for setFields and decomposePar and verify that they ran properlly. If they did not then rerun each application after
-remedying the issue, and mpirun should execute properlly afterwards.
+If the mpirun command fails, check the logs for setFields and decomposePar and verify that they ran properly. If they did not then rerun each application after
+remedying the issue, and mpirun should execute properly afterwards.
 
 
 **[Notes]:** 

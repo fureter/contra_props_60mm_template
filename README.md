@@ -1,4 +1,4 @@
-# OpenFOAM_Overset_Case_Contra_Props
+# OpenFOAM Overset Case Contra-rotating Props
  Example case for OpenFOAM overset meshing with dynamic meshes. This case has two contra rotating 60mm propellers that are inline with one another. Further information about the case is located in the ReadMe.txt file.
 
 This case uses overset meshing and pimpleFoam to simulate two contra rotating 60mm propellers similar to the ones seen on small brushed quad copters.

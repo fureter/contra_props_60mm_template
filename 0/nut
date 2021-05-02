@@ -1,0 +1,81 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      nut;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    sides
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    inlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+	"plane_zone(0|1|2)"
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    propellerCW
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+	propellerCCW
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+	/*shaft
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }*/
+	domain
+    {
+        type            overset;
+		value			uniform 0;
+    }
+	domain_PropellerMesh_CCW
+    {
+        type            overset;
+		value			uniform 0;
+    }
+	domain_PropellerMesh_CCW_PropellerMesh_CW
+    {
+        type            overset;
+		value			uniform 0;
+    }
+}
+
+
+// ************************************************************************* //

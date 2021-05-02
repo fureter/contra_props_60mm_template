@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "include/initialConditions"
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform $turbulentKE;
+
+boundaryField
+{
+    inlet
+	{
+		type  fixedValue;
+		value $internalField;
+	}
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+	/*
+    "plane_zone(0|1|2)"
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+*/
+    sides
+    {
+        type            slip;
+    }
+
+    propellerCW
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+	propellerCCW
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+	domain
+    {
+        type            overset;
+		value			uniform 0;
+    }
+	domain_PropellerMesh_CCW
+    {
+        type            overset;
+		value			uniform 0;
+    }
+}
+
+
+// ************************************************************************* //

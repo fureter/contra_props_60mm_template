@@ -1,0 +1,103 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+forceCoeffsCW
+{
+    type            forceCoeffs;
+
+    libs            ("libforces.so");
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (propellerCW);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Redundant for incompressible
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (-0.06 0 0);  // Axle midpoint on ground
+    pitchAxis       (1 0 0);
+    magUInf         12;
+    lRef            .14;        // Wheelbase length
+    Aref            3.256e-4;        // Estimated
+    /*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+    */
+}
+
+forceCoeffsCCW
+{
+    type            forceCoeffs;
+
+    libs            ("libforces.so");
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (propellerCCW);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Redundant for incompressible
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);  // Axle midpoint on ground
+    pitchAxis       (1 0 0);
+    magUInf         12;
+    lRef            .14;        // Wheelbase length
+    Aref            3.256e-4;        // Estimated
+    /*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+    */
+}
+
+forceCoeffsAll
+{
+    type            forceCoeffs;
+
+    libs            ("libforces.so");
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log             yes;
+
+    patches         (wall);
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1;           // Redundant for incompressible
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);  // Axle midpoint on ground
+    pitchAxis       (1 0 0);
+    magUInf         12;
+    lRef            .14;        // Wheelbase length
+    Aref            6.512e-4;        // Estimated
+    /*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+    */
+}
+
+
+// ************************************************************************* //

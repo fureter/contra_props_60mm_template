@@ -1,0 +1,3 @@
+#!/bin/sh
+
+surfaceTransformPoints constant/triSurface/PropCW.stl -translate '(-0.060 0 0)' constant/triSurface/PropCW.stl

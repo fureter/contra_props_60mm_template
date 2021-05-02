@@ -1,0 +1,22 @@
+#!/bin/sh
+cd ${0%/*} || exit 1                        # Run from this directory
+. $WM_PROJECT_DIR/bin/tools/RunFunctions    # Tutorial run functions
+
+
+(cd PropellerMesh_CW && ./Allrun)
+(cd PropellerMesh_CCW && ./Allrun)
+
+runApplication blockMesh
+runApplication snappyHexMesh -overwrite
+mergeMeshes PropellerMesh_CW PropellerMesh_CCW -overwrite
+runApplication mergeMeshes . PropellerMesh_CW -overwrite
+runApplication checkMesh
+runApplication topoSet
+rm 0/zoneID
+cp 0.base/zoneID 0/
+runApplication setFields
+rm 0/cellLevel
+rm 0/pointLevel
+runApplication decomposePar
+mpirun -np 12 overPimpleDyMFoam -parallel > log &
+#------------------------------------------------------------------------------

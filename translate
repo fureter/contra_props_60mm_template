@@ -1,0 +1,2 @@
+#!/bin/sh
+surfaceTransformPoints constant/triSurface/shaft.stl -translate '(0.001 0.00 0.00)' constant/triSurface/shaft.stl

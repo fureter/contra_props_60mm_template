@@ -1,0 +1,7 @@
+#!/bin/sh
+
+surfaceTransformPoints constant/triSurface/PropCW.stl -scale '(0.01 0.01 0.01)' constant/triSurface/PropCW.stl
+surfaceTransformPoints constant/triSurface/PropCW.stl -rollPitchYaw '(0 90 180)' constant/triSurface/PropCW.stl
+surfaceTransformPoints constant/triSurface/PropCW.stl -rollPitchYaw '(0 0 180)' constant/triSurface/PropCW.stl
+
+

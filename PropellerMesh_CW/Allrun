@@ -1,0 +1,10 @@
+#!/bin/sh
+cd ${0%/*} || exit 1                        # Run from this directory
+. $WM_PROJECT_DIR/bin/tools/RunFunctions    # Tutorial run functions
+
+runApplication blockMesh 
+runApplication surfaceFeatureExtract
+runApplication snappyHexMesh -overwrite
+#rotateMesh "(1 0 0)" "(0.9205048535 0.3907311285 0)"
+#runApplication topoSet
+#------------------------------------------------------------------------------

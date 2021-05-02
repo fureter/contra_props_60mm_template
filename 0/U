@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "include/initialConditions"
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (2 0 0);
+
+boundaryField
+{
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    inlet
+	{
+		type  fixedValue;
+		value 	uniform (12 0 0);
+	}
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           $internalField;
+    }
+
+    sides
+    {
+        type            slip;
+    }
+	/*
+	"plane_zone(0|1|2)"
+    {
+        type            noSlip;
+    }*/
+    propellerCW
+    {
+        type            noSlip;
+    }
+	propellerCCW
+    {
+        type            noSlip;
+    }
+	domain
+    {
+        type            overset;
+		value			uniform (0 0 0);
+    }
+	domain_PropellerMesh_CCW
+    {
+        type            overset;
+		value			uniform (0 0 0);
+    }
+}
+
+
+// ************************************************************************* //

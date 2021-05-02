@@ -1,0 +1,84 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+DebugSwitches
+{
+    overset                 0;
+    dynamicOversetFvMesh    0;
+}
+
+application     overPimpleDyMFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         5;
+
+deltaT          1E-6;
+
+writeControl    adjustableRunTime;
+
+writeInterval   2E-5;
+
+purgeWrite      0;
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxCo			1.5;
+
+functions
+{
+	#include "forceCoeffs"
+	minMaxU
+    {
+        type    fieldMinMax;
+        libs    ("libfieldFunctionObjects.so");
+        fields  (U);
+    }
+	minMaxP
+    {
+        type    fieldMinMax;
+        libs    ("libfieldFunctionObjects.so");
+        fields  (p);
+    }
+	Q
+    {
+        type    Q;
+        libs    ("libfieldFunctionObjects.so");
+		executeControl  writeTime;
+		executeInterval 1;
+		writeControl    writeTime;
+		writeInterval   1;
+    }
+	
+}
+
+
+// ************************************************************************* //

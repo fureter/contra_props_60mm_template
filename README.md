@@ -34,5 +34,5 @@ Currently the cell size at the overset interface is 2.08mm which does not allow 
 
 If mesh settings are adjusted, care should be taken to match cell sizes at the interface between the background mesh and the overset mesh regions.
 
-Also, at 3100rad/s the local velocity at the propeller blade tips reaches ~130m/s (0.37Mach) which warrents the use of a compressible solver, rather than
+Also, at 3100rad/s the local velocity at the propeller blade tips reaches ~90m/s (0.27Mach) which is close to warrenting the use of a compressible solver, rather than
 overPimpleDyMFoam.
